@@ -117,8 +117,6 @@ else:
 
 targets = {
     'tarball': tarball,
-    'mesa-sdk': 'http://user.astro.wisc.edu/~townsend/static.php?ref=mesasdk',
-    'mad-sdk': 'http://user.astro.wisc.edu/~townsend/static.php?ref=madsdk',
     'msg': 'https://msg.readthedocs.io/en/stable'
 }
 
@@ -193,7 +191,7 @@ intersphinx_disabled_reftypes = ["std:doc"]
 # Set up autodoc
 autoclass_content = 'class'
 autodoc_member_order = 'bysource'
-#autodoc_mock_imports = ['pykylie', 'numpy']
+autodoc_mock_imports = ['pymsg']
 
 # Set up napoleon
 napoleon_google_docstring = True
