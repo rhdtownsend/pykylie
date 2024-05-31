@@ -1,0 +1,15 @@
+#fields {
+  number_of_fields:20
+  dump_filestub:model-
+}
+
+#waveband {
+  start_wavelength:6675
+  finish_wavelength:6686
+  wavelength_resolution:0.1
+}
+
+#specgrid {
+  file_name:sg-BSTAR2006-high.h5
+  Z/Zo:1.0
+}

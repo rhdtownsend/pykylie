@@ -1,0 +1,30 @@
+#stellar { 
+  polar_temperature:21000
+  polar_radius:5
+  stellar_mass:11
+  equatorial_velocity:250
+  polar_inclination:24
+}
+
+#fields { 
+  number_of_fields:20
+  dump_filestub:model-
+  temperature_effects
+  area_effects
+  normal_effects
+  horizontal_velocity_fields
+  physical_amplitudes
+}
+
+#timings { 
+  start_time:0
+  finish_time:8.5
+}
+
+#mode { 
+  l_value:2
+  m_value:-2
+  velocity_amplitude:45.
+  observers_period:8.5
+  initial_phase:0.0
+}

@@ -1,0 +1,8 @@
+# .gitignore file for PYGYRE
+
+*~
+.DS_Store
+__pycache__
+.ipynb_checkpoints
+.jupyter_ystore.db
+

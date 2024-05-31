@@ -1,0 +1,36 @@
+Teff	T_{\rm eff}
+FeH	{\rm Fe}/{\rm H}
+aFe	\alpha/{\rm Fe}
+angstrom	\text{Å}
+cm	{\rm cm}
+um	{\rm \mu m}
+km	{\rm km}
+gram	{\rm g}
+erg	{\rm erg}
+dyne	{\rm dyn}
+second	{\rm s}
+yr	{\rm yr}
+kelvin	{\rm K}
+radian	{\rm rad}
+sterad	{\rm sr}
+barye	{\rm Ba}
+Msun	{\rm M}_{\odot}
+diff	{\rm d}#1
+sderiv	\diff{#1}/\diff{#2}
+obs	{\rm o}
+vshat	{\bf \hat{s}}
+vdhat	{\bf \hat{d}}
+vnhat	{\bf \hat{n}}
+vx	{\bf x}
+engy	E
+engyo	E^{\obs}
+intsy	I_{\lambda}
+mintsy	\overline{I}
+flux	F_{\lambda}
+fluxo	\flux^{\obs}
+mflux	\overline{F}
+mfluxo	\overline{F}^{\obs}
+fluxz	F_{0}
+area	A
+areao	A^{\obs}
+grad	g_{\rm rad}
