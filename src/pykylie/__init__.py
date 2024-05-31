@@ -230,7 +230,7 @@ def integrate_flux(tbl, specgrid, lam, d=10, limb_u=None, x_add=None):
 
         # Doppler-shift the wavelength axis
 
-        lam_d = lam/(1+row['V_proj']/ac.c.value)
+        lam_d = lam/(1-row['V_proj']/ac.c.value)
 
         # Add flux contribution
 
@@ -336,26 +336,23 @@ def run_kylie(file_name):
 
         tbl_model = read_bruce_model(model_file_name)
 
-        # Perform the disk integration
+        # Create the spectrum
 
-        with open(spec_file_name, 'w') as f:
+        spec_lam = np.empty((0))
+        spec_flux = np.empty((0))
 
-            # Loop through lams
+        for lam in lams:
 
-            for lam in lams:
+            flux = integrate_flux(tbl_model, specgrid, lam, limb_u=limb_u, x_add=x_add)
 
-                # Evaluate the flux
+            spec_lam = np.append(spec_lam, 0.5*(lam[1:] + lam[:-1]))
+            spec_flux = np.append(spec_flux, integrate_flux(tbl_model, specgrid, lam, limb_u=limb_u, x_add=x_add))
 
-                flux = integrate_flux(tbl_model, specgrid, lam, limb_u=limb_u, x_add=x_add)
+        # Write the spectrum
 
-                # Write data to file
+        tbl_spec = at.Table({'wavelength': spec_lam, 'flux': spec_flux},
+                            units=('Angstrom', 'erg cm^-2 s^-1 Angstrom^-1'))
 
-                tbl_spec = at.Table({
-                    'wavelength': 0.5*(lam[1:] + lam[:-1]),
-                    'flux': flux},
-                    units={'Angstrom', 'erg cm^-2 s^-1 Angstrom^-1'}
-                )
-
-                tbl_spec.write(spec_file_name, overwrite=True)
+        tbl_spec.write(spec_file_name, overwrite=True)
 
         print(f'Written file {spec_file_name}')
