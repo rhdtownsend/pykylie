@@ -22,9 +22,9 @@
 }
 
 #mode { 
-  l_value:2
-  m_value:-2
-  velocity_amplitude:45.
+  l_value:4
+  m_value:-4
+  velocity_amplitude:20.
   observers_period:8.5
   initial_phase:0.0
 }

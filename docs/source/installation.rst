@@ -12,8 +12,8 @@ Pre-requisites
 
 PyKYLIE requires that the following Python packages are already present:
 
-* `numpy <https://numpy.org/>`__
-* `scipy <https://scipy.org/>`__
+* `NumPy <https://numpy.org/>`__
+* `SciPy <https://scipy.org/>`__
 * `Astropy <https://www.astropy.org/>`__
 * `PyMSG <https://msg.readthedocs.io/>`__
 

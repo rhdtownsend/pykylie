@@ -5,7 +5,7 @@
 
 #waveband {
   start_wavelength:6675
-  finish_wavelength:6686
+  finish_wavelength:6685
   wavelength_resolution:0.1
 }
 
