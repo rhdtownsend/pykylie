@@ -353,7 +353,7 @@ def run_kylie(file_name):
                 tbl_spec = at.Table({
                     'wavelength': 0.5*(lam[1:] + lam[:-1]),
                     'flux': flux},
-                    units={'Angstrom', 'erg cm^2 s^-1 Angstrom^-1'}
+                    units={'Angstrom', 'erg cm^-2 s^-1 Angstrom^-1'}
                 )
 
                 tbl_spec.write(spec_file_name, overwrite=True)
