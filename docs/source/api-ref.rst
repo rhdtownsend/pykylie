@@ -3,7 +3,7 @@
 API Reference
 =============
 
-.. py:currentmodule:: pykylie
+.. py:module:: pymsg
 
 .. automodule:: pykylie
    :members:
