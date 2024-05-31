@@ -191,7 +191,7 @@ intersphinx_disabled_reftypes = ["std:doc"]
 # Set up autodoc
 autoclass_content = 'class'
 autodoc_member_order = 'bysource'
-autodoc_mock_imports = ['pymsg', 'numpy'z]
+autodoc_mock_imports = ['pymsg', 'numpy', 'scipy', 'astropy']
 
 # Set up napoleon
 napoleon_google_docstring = True
