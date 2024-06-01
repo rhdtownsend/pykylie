@@ -113,7 +113,7 @@ extlinks = {
 
 # Set site-wide targets
 
-if version == 'dev':
+if version.endswith('+dev'):
     tarball = 'http://user.astro.wisc.edu/~townsend/resource/download/nightly/pykylie-dev.tar.gz'
 else:
     tarball = f'https://github.com/rhdtownsend/pykylie/releases/download/v{version}/pykylie-{version}.tar.gz'
