@@ -23,5 +23,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[project.urls]
+Documentation = "https://pykylie.readthedocs.org"
+Repository = "https://github.com/rhdtownsend/pykylie/"
+Issues = "https://github.com/rhdtownsend/pykylie/issues"
+
 [tool.hatch.version]
 path = "src/pykylie/_version.py"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src"]
