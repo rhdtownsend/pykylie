@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-__version__ = "0.1+dev"
-
 """Python implementation of KYLIE.
 
 PyKYLIE provides a set of routines that allow a simple Python
