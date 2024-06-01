@@ -27,6 +27,7 @@ from _version import __version__
 project = 'PyKYLIE'
 author = 'Rich Townsend & The PyKYLIE Team'
 version = __version__
+release = version
 branch = 'main'
 copyright = '2024, Rich Townsend & The PyKYLIE Team'
 
