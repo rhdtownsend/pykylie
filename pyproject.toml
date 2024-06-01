@@ -24,4 +24,4 @@ classifiers = [
 ]
 
 [tool.hatch.version]
-path = "src/pykylie/version.py"
+path = "src/pykylie/_version.py"

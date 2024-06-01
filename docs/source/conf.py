@@ -15,10 +15,11 @@ import sys
 import re
 
 sys.path.insert(0, os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath('../../src/pykylie'))
 sys.path.insert(0, os.path.abspath('exts'))
 
 import sphinx_rtd_theme
-from pykylie.version import __version__
+from _version import __version__
 
 
 # -- Project information -----------------------------------------------------
