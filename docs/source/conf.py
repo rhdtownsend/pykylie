@@ -18,13 +18,14 @@ sys.path.insert(0, os.path.abspath('../../src'))
 sys.path.insert(0, os.path.abspath('exts'))
 
 import sphinx_rtd_theme
+from pykylie.version import __version__
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'PyKYLIE'
 author = 'Rich Townsend & The PyKYLIE Team'
-version = 'dev'
+version = __version__
 branch = 'main'
 copyright = '2024, Rich Townsend & The PyKYLIE Team'
 
