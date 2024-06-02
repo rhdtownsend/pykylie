@@ -114,13 +114,13 @@ extlinks = {
 # Set site-wide targets
 
 if version.endswith('+dev'):
-    dist_dir = 'msg-dev'
+    dist_dir = 'pykylie-dev'
     tarball = f'{dist_dir}.tar.gz'
     tarball_url = f'http://user.astro.wisc.edu/~townsend/resource/download/nightly/{tarball}'
 else:
-    dist_dir = 'msg-{version}'
+    dist_dir = 'pykylie-{version}'
     tarball = f'{dist_dir}.tar.gz'
-    tarball_url = f'https://github.com/rhdtownsend/msg/releases/download/v{version}/{tarball}'
+    tarball_url = f'https://github.com/rhdtownsend/pykylie/releases/download/v{version}/{tarball}'
 
 targets = {
     'tarball_url': tarball_url,
