@@ -123,7 +123,7 @@ else:
     tarball_url = f'https://github.com/rhdtownsend/msg/releases/download/v{version}/{tarball}'
 
 targets = {
-    'tarball_url': tarball,
+    'tarball_url': tarball_url,
     'msg': 'https://msg.readthedocs.io/en/stable'
 }
 
