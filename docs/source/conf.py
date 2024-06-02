@@ -114,12 +114,16 @@ extlinks = {
 # Set site-wide targets
 
 if version.endswith('+dev'):
-    tarball = 'http://user.astro.wisc.edu/~townsend/resource/download/nightly/pykylie-dev.tar.gz'
+    dist_dir = 'msg-dev'
+    tarball = f'{dist_dir}.tar.gz'
+    tarball_url = f'http://user.astro.wisc.edu/~townsend/resource/download/nightly/{tarball}'
 else:
-    tarball = f'https://github.com/rhdtownsend/pykylie/releases/download/v{version}/pykylie-{version}.tar.gz'
+    dist_dir = 'msg-{version}'
+    tarball = f'{dist_dir}.tar.gz'
+    tarball_url = f'https://github.com/rhdtownsend/msg/releases/download/v{version}/{tarball}'
 
 targets = {
-    'tarball': tarball,
+    'tarball_url': tarball,
     'msg': 'https://msg.readthedocs.io/en/stable'
 }
 
@@ -129,7 +133,9 @@ nbsphinx_prolog = rst_prolog
 # Add substitutions for sphinx_substitution_extensions
 
 rep_exts = {"version": version,
-            "author": author}
+            "author": author,
+            "dist_dir": dist_dir,
+            "tarball": tarball}
 
 for rep_ext_key, rep_ext_val in rep_exts.items():
     rst_prolog += "\n.. |{:s}| replace:: {:s}".format(rep_ext_key, rep_ext_val)
