@@ -42,7 +42,7 @@ Installing from Source
 ======================
 
 To install PyKYLIE from source, download the `source code
-<tarball_url>`__ and unpack it from the command line using the
+<tarball_url_>`__ and unpack it from the command line using the
 :command:`tar` utility:
 
 .. prompt:: bash
