@@ -118,7 +118,7 @@ if version.endswith('+dev'):
     tarball = f'{dist_dir}.tar.gz'
     tarball_url = f'http://user.astro.wisc.edu/~townsend/resource/download/nightly/{tarball}'
 else:
-    dist_dir = 'pykylie-{version}'
+    dist_dir = f'pykylie-{version}'
     tarball = f'{dist_dir}.tar.gz'
     tarball_url = f'https://github.com/rhdtownsend/pykylie/releases/download/v{version}/{tarball}'
 
