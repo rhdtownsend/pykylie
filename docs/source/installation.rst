@@ -27,16 +27,16 @@ Installing from PyPI
 To install PyKYLIE from the `Python Package Index (PyPI)
 <https://pypi.org/>`__, use the :command:`pip` command:
 
-.. prompt:: bash
+.. code-block:: console
 
-   pip install pykylie
+   $ pip install pykylie
 
 If PyKYLIE is already installed, you can upgrade to a more-recent
 version via
 
-.. prompt:: bash
+.. code-block:: console
 
-   pip install --upgrade pykylie
+   $ pip install --upgrade pykylie
 
 Installing from Source
 ======================
@@ -45,17 +45,17 @@ To install PyKYLIE from source, download the `source code
 <tarball_url_>`__ and unpack it from the command line using the
 :command:`tar` utility:
 
-.. prompt:: bash
+.. code-block:: console
    :substitutions:
 
-   tar xf |tarball|
+   $ tar xf |tarball|
 
 Then, use :command:`pip` to install it:
 
-.. prompt:: bash
+.. code-block:: console
    :substitutions:
 
-   pip install ./|dist_dir|
+   $ pip install ./|dist_dir|
 
 
 

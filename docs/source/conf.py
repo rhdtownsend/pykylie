@@ -29,7 +29,7 @@ author = 'Rich Townsend & The PyKYLIE Team'
 version = __version__
 release = version
 branch = 'main'
-copyright = '2024, Rich Townsend & The PyKYLIE Team'
+copyright = '2024-2026, Rich Townsend & The PyKYLIE Team'
 
 
 # -- General configuration ---------------------------------------------------
@@ -43,12 +43,12 @@ numfig = True
 extensions = [
     'sphinx_rtd_theme',
     'sphinx.ext.mathjax',
-    'sphinx.ext.extlinks', 
+    'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinxcontrib.spelling',
-    'sphinx-prompt',
+    'sphinx_copybutton',
     'sphinx_substitution_extensions',
     'nbsphinx',
     'ads_cite',
@@ -162,7 +162,7 @@ mathjax_macros = {}
 latex_preamble = ''
 
 for key, value in macros.items():
-    argnums = re.findall('#(\d)', value)
+    argnums = re.findall(r'#(\d)', value)
     if argnums:
         n_args = int(max(argnums))
         mathjax_macros[key] = [value, n_args]
@@ -171,13 +171,8 @@ for key, value in macros.items():
         mathjax_macros[key] = value
         latex_preamble += f'\\newcommand{{\\{key}}}{{{value}}}\n'
 
-#mathjax_config = {                  
-#    'TeX': { 
-#        'Macros': mathjax_macros
-#    }
-#}
-mathjax3_config = {                  
-    'tex': { 
+mathjax3_config = {
+    'tex': {
         'macros': mathjax_macros
     }
 }
@@ -212,3 +207,12 @@ nbsphinx_prolog = rst_prolog
 
 # Spelling
 spelling_word_list_filename='spelling_wordlist.txt'
+
+# Pygments style
+pygments_style = 'sphinx'
+
+# Copybutton settings
+copybutton_exclude = '.linenos, .gp, .go'
+
+# Add path to pymsg
+os.environ['MSG_DIR'] = os.path.abspath('../..')
