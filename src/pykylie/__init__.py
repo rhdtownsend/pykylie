@@ -184,9 +184,9 @@ def parse_comm_file(file_name, check_against=None):
     return comms
 
 
-def integrate_flux(tbl, specgrid, lam, d=10, limb_u=None, x_add=None):
+def spec_irradiance(tbl, specgrid, lam, d=10, limb_u=None, x_add=None):
 
-    r"""Disk-integrate a flux spectrum.
+    r"""Evaluate the spectroscopic irradiance
 
     Args:
         tbl (astropy.table.Table): Table of BRUCE model data returned
@@ -199,51 +199,91 @@ def integrate_flux(tbl, specgrid, lam, d=10, limb_u=None, x_add=None):
             passed on to pymsg.
 
     Returns:
-        numpy.ndarray: Spectroscopic flux (erg/cm^2/s/Å) in bins delineated
+        numpy.ndarray: Spectroscopic irradiance (erg/cm^2/s/Å) in bins delineated
         by lam; length len(lam)-1.
     """
 
-    # Initialize the flux array
+    # Extract data from tbl
 
-    flux = np.zeros(len(lam)-1)
+    Teff = np.array(tbl['Teff'])
+    V_proj = np.array(tbl['V_proj'])
+    A_proj = np.array(tbl['A_proj'])
+    g = np.array(tbl['g'])
+    mu = np.array(tbl['mu'])
 
-    # Add in contributions from each surface element
+    x = {
+        'Teff': Teff,
+        'log(g)': np.log10(g)+2
+    }
 
-    i = 0
+    if x_add is not None:
+        n = len(tbl)
+        for key, value in x_add.items():
+            x[key] = np.full(n, value)
 
-    for row in tbl:
+    dOmega = A_proj/(d*ac.pc.value)**2
+    z = -V_proj/ac.c.value
 
-        # Set up photospheric parameters
+    # Evaluate the irradiance
 
-        if x_add is not None:
-            x = x_add | {
-                'Teff': row['Teff'],
-                'log(g)': np.log10(row['g'])+2
-            }
-        else:
-            x = {
-                'Teff': row['Teff'],
-                'log(g)': np.log10(row['g'])+2
-            }
+    if limb_u is not None:
+        dOmega *= (1 - limb_u*(1 - row['mu']))/(np.pi*(1 - limb_u/3))
+        irradiance = specgrid.irradiance(x, 1., dOmega, z, lam)
+    else:
+        irradiance = specgrid.irradiance(x, mu, dOmega, z, lam)
 
-        # Doppler-shift the wavelength axis
-
-        lam_d = lam/(1-row['V_proj']/ac.c.value)
-
-        # Add flux contribution
-
-        if limb_u is not None:
-            intensity = specgrid.flux(x, lam_d)*(1 - limb_u*(1 - row['mu']))/(np.pi*(1 - limb_u/3))
-        else:
-            intensity = specgrid.intensity(x, row['mu'], lam_d)
-
-        flux += intensity*row['A_proj']/(d*ac.pc.value)**2
-
-        i += 1
-        
     # Return the flux
 
-    return flux
+    return irradiance
+
+
+def phot_irradiance(tbl, photgrid, d=10, limb_u=None, x_add=None):
+
+    r"""Evaluate the photometric irradiance
+
+    Args:
+        tbl (astropy.table.Table): Table of BRUCE model data returned
+            by :py:func:`read_bruce_model`.
+        photgrid (pymsg.PhotGrid): Grid of spectroscopic intensity data.
+        d (float, optional): Distance (pc).
+        limb_u (float, optional): Linear limb-darkening parameter.
+        x_add (dict, optional): Additional photospheric parameters (e.g., [Fe/H])
+            passed on to pymsg.
+
+    Returns:
+        numpy.ndarray: Photometric irradiance
+    """
+
+    # Extract data from tbl
+
+    Teff = np.array(tbl['Teff'])
+    A_proj = np.array(tbl['A_proj'])
+    g = np.array(tbl['g'])
+    mu = np.array(tbl['mu'])
+
+    x = {
+        'Teff': Teff,
+        'log(g)': np.log10(g)+2
+    }
+
+    if x_add is not None:
+        n = len(tbl)
+        for key, value in x_add.items():
+            x[key] = np.full(n, value)
+
+    dOmega = A_proj/(d*ac.pc.value)**2
+
+    # Evaluate the irradiance
+
+    if limb_u is not None:
+        dOmega *= (1 - limb_u*(1 - row['mu']))/(np.pi*(1 - limb_u/3))
+        irradiance = photgrid.irradiance(x, 1., dOmega)
+    else:
+        irradiance = photgrid.irradiance(x, mu, dOmega)
+
+    # Return the flux
+
+    return irradiance
 
 
 def run_kylie(file_name):
@@ -341,10 +381,8 @@ def run_kylie(file_name):
 
         for lam in lams:
 
-            flux = integrate_flux(tbl_model, specgrid, lam, limb_u=limb_u, x_add=x_add)
-
             spec_lam = np.append(spec_lam, 0.5*(lam[1:] + lam[:-1]))
-            spec_flux = np.append(spec_flux, integrate_flux(tbl_model, specgrid, lam, limb_u=limb_u, x_add=x_add))
+            spec_flux = np.append(spec_flux, spec_irradiance(tbl_model, specgrid, lam, limb_u=limb_u, x_add=x_add))
 
         # Write the spectrum
 
