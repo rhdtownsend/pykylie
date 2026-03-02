@@ -19,7 +19,7 @@ PyKYLIE requires that the following Python packages are already present:
 
 If you opt to install from PyPI (below), then these pre-requisites
 should be taken care of automatically, with the exception of PyMSG
-(which has to be installed manually).
+(which must be installed manually *before* you try to install PyKYLIE).
 
 Installing from PyPI
 ====================
